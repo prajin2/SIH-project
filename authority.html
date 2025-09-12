@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocean Watch: Hazard Reporting & Analytics</title>
+    <title>OceanEye - Ocean Hazard Reporting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -20,20 +20,25 @@
             background: linear-gradient(135deg, #0a2a43 0%, #1a4b6e 100%);
             color: #f5f5f5;
             min-height: 100vh;
+            padding: 20px;
         }
         
         .app-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
         }
         
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            margin-bottom: 30px;
+            padding: 20px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
         
@@ -87,6 +92,7 @@
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 25px;
+            padding: 20px;
         }
         
         .card {
@@ -94,7 +100,6 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
             margin-bottom: 25px;
         }
         
@@ -170,6 +175,12 @@
             font-size: 16px;
         }
         
+        /* Fix for dropdown text color */
+        select option {
+            color: black;
+            background-color: white;
+        }
+        
         textarea {
             min-height: 100px;
             resize: vertical;
@@ -193,11 +204,6 @@
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #4ecdc4;
         }
         
         .reports-list {
@@ -270,7 +276,6 @@
         
         footer {
             text-align: center;
-            margin-top: 40px;
             padding: 20px;
             color: #777;
             font-size: 14px;
@@ -299,7 +304,7 @@
         <header>
             <div class="logo">
                 <i class="fas fa-water"></i>
-                <h1>Ocean Watch</h1>
+                <h1>OceanEye</h1>
             </div>
             <div class="nav-buttons">
                 <button class="nav-btn active"><i class="fas fa-home"></i> Home</button>
@@ -444,7 +449,7 @@
         </div>
         
         <footer>
-            <p>Ocean Watch Platform - Integrated Ocean Hazard Reporting and Social Media Analytics</p>
+            <p>OceanEye Platform - Integrated Ocean Hazard Reporting and Social Media Analytics</p>
             <p>© 2023 INCOIS Collaboration Project</p>
         </footer>
     </div>
@@ -496,95 +501,4 @@
             data: {
                 labels: ['Tsunami', 'Storm Surge', 'High Waves', 'Oil Spill', 'Plastic'],
                 datasets: [{
-                    data: [25, 18, 32, 12, 13],
-                    backgroundColor: [
-                        '#ff6384',
-                        '#ff9f40',
-                        '#4bc0c0',
-                        '#9966ff',
-                        '#36a2eb'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: '#fff'
-                        }
-                    }
-                }
-            }
-        });
-        
-        const socialCtx = document.getElementById('socialChart').getContext('2d');
-        const socialChart = new Chart(socialCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-                datasets: [{
-                    label: 'Twitter Mentions',
-                    data: [65, 59, 80, 81, 56, 55, 120],
-                    borderColor: '#1da1f2',
-                    tension: 0.3,
-                    fill: false
-                }, {
-                    label: 'Facebook Posts',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    borderColor: '#4267b2',
-                    tension: 0.3,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: '#fff'
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: '#fff'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: '#fff'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Add interactivity to buttons
-        document.querySelectorAll('.nav-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        document.querySelectorAll('.lang-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
-</body>
-</html>
+                    data: [25, 18, 32,
